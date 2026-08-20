@@ -1,4 +1,4 @@
-Python
+# Python
 def calculate_special_sum(X):
     # Convert integer X to string to construct XX, XXX, XXXX
     x_str = str(X)
@@ -13,9 +13,9 @@ def calculate_special_sum(X):
 # Example test call
 result = calculate_special_sum(3)
 print(f"Output for X=3: {result}")  # Expected output: 3702
-Exercise 3: Double Dice
+# Exercise 3: Double Dice
 
-Python
+# Python
 import random
 
 def throw_dice():
