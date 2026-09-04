@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full-Stack Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            glass: "rgba(255, 255, 255, 0.08)",
+            glassBorder: "rgba(255, 255, 255, 0.18)",
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .glass-nav {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+
+  <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-purple-600/30 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed top-[40%] right-[-10%] w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-[-10%] left-[20%] w-96 h-96 bg-blue-600/25 rounded-full blur-3xl pointer-events-none"></div>
+
+  <nav class="fixed top-0 left-0 w-full z-50 glass-nav">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+        &lt;Eugene /&gt;
+      </a>
+      <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+        <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+        <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="about" class="pt-32 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex items-center">
+    <div class="grid md:grid-cols-12 gap-8 items-center w-full">
+      <div class="md:col-span-7 space-y-6">
+        <div class="inline-block glass-card px-4 py-1.5 rounded-full text-xs font-semibold text-cyan-300 uppercase tracking-widest">
+          Full-Stack Developer
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+          Hi, I'm <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-500 bg-clip-text text-transparent">Eugene</span>.
+        </h1>
+        <p class="text-slate-300 text-lg leading-relaxed max-w-xl">
+          I build scalable, end-to-end web applications with sleek frontend interfaces and robust backend architectures. Passionate about turn-key systems, cloud infrastructure, and modern web tech.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+            View Work
+          </a>
+          <a href="#contact" class="px-6 py-3 rounded-xl glass-card text-slate-200 font-medium hover:bg-white/10 transition">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+      <div class="md:col-span-5 flex justify-center">
+        <div class="glass-card p-4 rounded-3xl relative">
+          <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-2xl bg-slate-800/80 overflow-hidden flex items-center justify-center border border-white/10">
+            <svg class="w-24 h-24 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent inline-block">
+        Technical Expertise
+      </h2>
+      <p class="text-slate-400 mt-2">Tools and technologies I use to power modern apps.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/50 transition">
+        <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 font-bold text-xl">&lt;&gt;</div>
+        <h3 class="text-xl font-semibold mb-3">Frontend</h3>
+        <ul class="space-y-2 text-slate-300 text-sm">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>React.js / Next.js</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>TypeScript</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Tailwind CSS</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Redux / Zustand</li>
+        </ul>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition">
+        <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4 font-bold text-xl">⚙️</div>
+        <h3 class="text-xl font-semibold mb-3">Backend</h3>
+        <ul class="space-y-2 text-slate-300 text-sm">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Node.js / Express</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Python / Django</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>PostgreSQL / MongoDB</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>REST & GraphQL APIs</li>
+        </ul>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl hover:border-blue-500/50 transition">
+        <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 mb-4 font-bold text-xl">☁️</div>
+        <h3 class="text-xl font-semibold mb-3">DevOps & Tools</h3>
+        <ul class="space-y-2 text-slate-300 text-sm">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Docker & Kubernetes</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>AWS (S3, EC2, Lambda)</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>CI/CD Pipelines</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Git / GitHub Actions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent inline-block">
+        Featured Projects
+      </h2>
+      <p class="text-slate-400 mt-2">A glimpse into what I've built recently.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-white/30 transition">
+        <div class="h-48 bg-slate-800/80 flex items-center justify-center border-b border-white/10 text-slate-500 font-mono">
+          [ Project Screenshot ]
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">SaaS Analytics Dashboard</h3>
+          <p class="text-slate-300 text-sm mt-2 mb-4">A real-time data processing platform built for monitoring server load and user engagement metrics.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-cyan-500/10 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/20">Next.js</span>
+            <span class="text-xs bg-purple-500/10 text-purple-300 px-3 py-1 rounded-full border border-purple-500/20">Node.js</span>
+            <span class="text-xs bg-blue-500/10 text-blue-300 px-3 py-1 rounded-full border border-blue-500/20">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-white/30 transition">
+        <div class="h-48 bg-slate-800/80 flex items-center justify-center border-b border-white/10 text-slate-500 font-mono">
+          [ Project Screenshot ]
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">E-Commerce Microservices Platform</h3>
+          <p class="text-slate-300 text-sm mt-2 mb-4">Scalable online storefront featuring real-time inventory synchronization and Stripe checkout integration.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-cyan-500/10 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/20">React</span>
+            <span class="text-xs bg-purple-500/10 text-purple-300 px-3 py-1 rounded-full border border-purple-500/20">Docker</span>
+            <span class="text-xs bg-blue-500/10 text-blue-300 px-3 py-1 rounded-full border border-blue-500/20">Redis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20 px-6 max-w-4xl mx-auto">
+    <div class="glass-card p-8 sm:p-12 rounded-3xl text-center relative overflow-hidden">
+      <h2 class="text-3xl font-bold text-white mb-4">Let's Build Something Together</h2>
+      <p class="text-slate-300 max-w-md mx-auto mb-8">
+        Currently open for full-time full-stack roles and technical consulting. Drop a message!
+      </p>
+      <a href="mailto:eugene@example.com" class="inline-block px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold hover:opacity-90 transition shadow-lg shadow-purple-500/20">
+        Send an Email
+      </a>
+    </div>
+  </section>
+
+  <footer class="py-6 text-center text-slate-500 text-xs border-t border-white/5">
+    <p>© 2026 Eugene. Built with Tailwind CSS & Glassmorphism.</p>
+  </footer>
+
+</body>
+</html>

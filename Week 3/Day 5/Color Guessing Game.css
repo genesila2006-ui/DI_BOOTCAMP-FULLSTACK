@@ -1,0 +1,97 @@
+:root {
+  color: #ffffff;
+  background: #232323;
+  font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  width: min(100% - 32px, 600px);
+  margin: 20px auto;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 7vw, 2.5rem);
+}
+
+#colorDisplay {
+  padding: 10px 0;
+  margin-bottom: 20px;
+  color: #ffffff;
+  background: steelblue;
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  overflow-wrap: anywhere;
+}
+
+#message {
+  min-height: 30px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.mode-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  border: none;
+  background: none;
+  color: steelblue;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+button:hover,
+button:focus-visible,
+button.selected {
+  color: #ffffff;
+  background: steelblue;
+}
+
+.swatches-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.square {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 15%;
+  background: purple;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: min(100% - 20px, 600px);
+    padding: 12px 0;
+  }
+
+  .swatches-container {
+    gap: 12px;
+  }
+}

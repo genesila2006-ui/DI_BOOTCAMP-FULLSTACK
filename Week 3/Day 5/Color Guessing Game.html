@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Guessing Game</title>
+  <link rel="stylesheet" href="Color Guessing Game.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Guess The Color</h1>
+    <div id="colorDisplay">RGB(0, 0, 0)</div>
+    <div id="message" aria-live="polite"></div>
+
+    <nav class="mode-buttons" aria-label="Game controls">
+      <button class="modeBtn" type="button" data-mode="3">3 Swatches</button>
+      <button class="modeBtn selected" type="button" data-mode="6">6 Swatches</button>
+      <button id="reset" type="button">New Colors</button>
+    </nav>
+
+    <section class="swatches-container" aria-label="Color swatches">
+      <button class="square" type="button" aria-label="Color swatch 1"></button>
+      <button class="square" type="button" aria-label="Color swatch 2"></button>
+      <button class="square" type="button" aria-label="Color swatch 3"></button>
+      <button class="square" type="button" aria-label="Color swatch 4"></button>
+      <button class="square" type="button" aria-label="Color swatch 5"></button>
+      <button class="square" type="button" aria-label="Color swatch 6"></button>
+    </section>
+  </main>
+
+  <script src="Exercises XP.js"></script>
+</body>
+</html>

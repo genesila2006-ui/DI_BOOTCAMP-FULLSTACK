@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drumset</title>
+  <style>
+    :root {
+      --gold: #ffc600;
+      --dark: #050505;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      padding: 20px;
+      color: #ffffff;
+      background-color: var(--dark);
+      background-image: url("https://raw.githubusercontent.com/devtlv/drumset_setup/master/screenshot.png");
+      background-position: center;
+      background-size: cover;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+    }
+
+    body::before {
+      position: absolute;
+      inset: 38% 0 auto;
+      height: 26%;
+      content: "";
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    h1 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .drum-machine {
+      width: 100%;
+    }
+
+    .keys {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(54px, 1fr));
+      gap: clamp(8px, 1.5vw, 16px);
+      width: min(100%, 650px);
+      margin: 0 auto;
+    }
+
+    .key {
+      aspect-ratio: 0.75;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      border: 1px solid var(--gold);
+      border-radius: 0;
+      color: #ffffff;
+      background: #050505;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 100ms ease, background-color 100ms ease, box-shadow 100ms ease;
+    }
+
+    .key kbd {
+      font: 400 clamp(1.1rem, 2.5vw, 1.55rem) Georgia, "Times New Roman", serif;
+    }
+
+    .key span {
+      color: var(--gold);
+      font: 700 clamp(0.5rem, 1vw, 0.68rem) Georgia, "Times New Roman", serif;
+    }
+
+    .key:hover,
+    .key:focus-visible,
+    .key.playing {
+      background: rgba(0, 0, 0, 0.82);
+      box-shadow: 0 0 20px var(--gold), inset 0 0 12px rgba(255, 198, 0, 0.3);
+    }
+
+    .key.playing {
+      transform: scale(1.04);
+    }
+
+    .note,
+    .intro {
+      display: none;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 12px 8px;
+      }
+
+      .keys {
+        grid-template-columns: repeat(3, minmax(54px, 1fr));
+        width: min(100%, 260px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Drumset</h1>
+      <p class="intro">Eight sounds. One keyboard. Make some noise.</p>
+    </header>
+
+    <section class="drum-machine" aria-label="Drum machine">
+      <div class="keys">
+        <button class="key" type="button" data-key="65" aria-label="Kick drum">
+          <kbd>A</kbd><span class="sound">Boom</span>
+        </button>
+        <button class="key" type="button" data-key="83" aria-label="Snare drum">
+          <kbd>S</kbd><span class="sound">Clap</span>
+        </button>
+        <button class="key" type="button" data-key="68" aria-label="Hi-hat">
+          <kbd>D</kbd><span class="sound">HiHat</span>
+        </button>
+        <button class="key" type="button" data-key="70" aria-label="Kick drum">
+          <kbd>F</kbd><span class="sound">Kick</span>
+        </button>
+        <button class="key" type="button" data-key="71" aria-label="Open hi-hat">
+          <kbd>G</kbd><span class="sound">Openhat</span>
+        </button>
+        <button class="key" type="button" data-key="72" aria-label="Ride cymbal">
+          <kbd>H</kbd><span class="sound">Ride</span>
+        </button>
+        <button class="key" type="button" data-key="74" aria-label="Snare drum">
+          <kbd>J</kbd><span class="sound">Snare</span>
+        </button>
+        <button class="key" type="button" data-key="75" aria-label="Tink sound">
+          <kbd>K</kbd><span class="sound">Tink</span>
+        </button>
+        <button class="key" type="button" data-key="76" aria-label="Tom drum">
+          <kbd>L</kbd><span class="sound">tom</span>
+        </button>
+      </div>
+      <p class="note">Add your audio files to <strong>sounds/</strong> to hear the kit.</p>
+    </section>
+  </main>
+
+  <audio data-key="65" src="sounds/boom.wav"></audio>
+  <audio data-key="83" src="sounds/clap.wav"></audio>
+  <audio data-key="68" src="sounds/hihat.wav"></audio>
+  <audio data-key="70" src="sounds/kick.wav"></audio>
+  <audio data-key="71" src="sounds/openhat.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tink.wav"></audio>
+  <audio data-key="76" src="sounds/tom.wav"></audio>
+
+  <script>
+    let audioContext;
+
+    function getAudioContext() {
+      audioContext ??= new (window.AudioContext || window.webkitAudioContext)();
+      return audioContext;
+    }
+
+    function playSynthSound(keyCode) {
+      const context = getAudioContext();
+      const now = context.currentTime;
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      const noise = context.createBufferSource();
+      const filter = context.createBiquadFilter();
+      const noiseBuffer = context.createBuffer(1, context.sampleRate * 0.4, context.sampleRate);
+      const noiseData = noiseBuffer.getChannelData(0);
+
+      for (let index = 0; index < noiseData.length; index += 1) {
+        noiseData[index] = Math.random() * 2 - 1;
+      }
+
+      noise.buffer = noiseBuffer;
+      oscillator.connect(gain);
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(context.destination);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.7, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+
+      if (keyCode === '65' || keyCode === '70') {
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(keyCode === '65' ? 110 : 75, now);
+        oscillator.frequency.exponentialRampToValueAtTime(45, now + 0.3);
+        oscillator.start(now);
+        oscillator.stop(now + 0.35);
+      } else if (keyCode === '68' || keyCode === '71') {
+        filter.type = 'highpass';
+        filter.frequency.value = keyCode === '68' ? 5000 : 2500;
+        noise.start(now);
+        noise.stop(now + 0.12);
+      } else if (keyCode === '83' || keyCode === '74') {
+        filter.type = 'bandpass';
+        filter.frequency.value = keyCode === '83' ? 1800 : 4200;
+        noise.start(now);
+        noise.stop(now + 0.25);
+      } else {
+        oscillator.type = 'triangle';
+        oscillator.frequency.value = keyCode === '72' ? 220 : 660;
+        oscillator.start(now);
+        oscillator.stop(now + 0.25);
+        noise.start(now);
+        noise.stop(now + 0.08);
+      }
+    }
+
+    function playSound(keyCode) {
+      const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${keyCode}"]`);
+
+      if (!audio || !key) {
+        return;
+      }
+
+      if (audio.readyState === 0) {
+        playSynthSound(keyCode);
+      } else {
+        audio.currentTime = 0;
+        audio.play().catch(() => playSynthSound(keyCode));
+      }
+      key.classList.add('playing');
+      key.key = key.getAttribute('data-key');
+      setTimeout(() => key.classList.remove('playing'), 100);
+    }
+
+    window.addEventListener('keydown', (event) => {
+      const keyCode = event.keyCode;
+      console.log(keyCode);
+      playSound(keyCode);
+    });
+
+    document.querySelectorAll('.key').forEach((key) => {
+      key.addEventListener('click', function () {
+        const keyCode = this.getAttribute('data-key');
+        console.log(keyCode);
+        playSound(keyCode);
+      });
+    });
+  </script>
+</body>
+</html>

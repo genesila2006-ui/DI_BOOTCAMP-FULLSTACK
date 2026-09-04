@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List Challenge</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <main>
+    <h1>Todo List</h1>
+    <form id="taskForm">
+      <label class="visually-hidden" for="taskInput">New task</label>
+      <input type="text" id="taskInput" placeholder="Enter a new task..." autocomplete="off">
+      <button type="submit">Submit</button>
+    </form>
+    <div class="listTasks" aria-live="polite"></div>
+  </main>
+  <script src="Dailychallenge.js"></script>
+</body>
+</html>

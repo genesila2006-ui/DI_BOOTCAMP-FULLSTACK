@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gracias Leo | A Tribute</title>
+  <style>
+    :root { --navy: #091b3b; --blue: #1b5eb5; --sky: #65b9e8; --gold: #f2c75c; --cream: #f7f4ed; --muted: #aebed5; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: #fff; background: var(--navy); font-family: Georgia, "Times New Roman", serif; }
+    .hero { min-height: 720px; display: grid; align-items: end; padding: 52px max(24px, calc((100% - 1180px) / 2)); background: linear-gradient(90deg, rgba(3, 14, 36, .94) 0%, rgba(3, 14, 36, .64) 46%, rgba(3, 14, 36, .12) 100%), url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1800&q=85") center/cover; }
+    nav { position: absolute; top: 0; left: 50%; z-index: 2; display: flex; width: min(100% - 48px, 1180px); justify-content: space-between; align-items: center; transform: translateX(-50%); padding: 24px 0; }
+    .brand { color: #fff; font: 700 1.1rem Arial, sans-serif; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }.brand span { color: var(--gold); }
+    nav a:not(.brand) { color: #fff; font: 700 .7rem Arial, sans-serif; letter-spacing: .14em; text-decoration: none; text-transform: uppercase; }
+    .hero-copy { max-width: 700px; padding-bottom: 44px; }.eyebrow { color: var(--gold); font: 700 .72rem Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+    h1 { margin: 18px 0; font-size: clamp(4rem, 11vw, 9.4rem); line-height: .8; letter-spacing: -.08em; }.hero-copy p { max-width: 450px; color: #dce6f4; font-size: 1.1rem; line-height: 1.65; }
+    .button { display: inline-block; margin-top: 16px; padding: 14px 20px; color: var(--navy); background: var(--gold); font: 700 .7rem Arial, sans-serif; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; cursor: pointer; }.button:hover { background: #fff; }
+    section { width: min(100% - 48px, 1180px); margin: auto; padding: 100px 0; }.section-heading { max-width: 600px; margin-bottom: 45px; }.section-heading h2 { margin: 14px 0 0; color: var(--cream); font-size: clamp(2.5rem, 6vw, 5.2rem); font-weight: 400; line-height: .92; letter-spacing: -.06em; }.section-heading h2 em { color: var(--sky); font-style: normal; }
+    .story { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: center; }.story-image { min-height: 450px; background: url("https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=900&q=85") center/cover; border: 8px solid var(--blue); }.story-copy p { color: var(--muted); font-size: 1rem; line-height: 1.8; }.quote { margin-top: 28px; padding: 20px 0 0 22px; border-left: 3px solid var(--gold); color: #fff; font-size: 1.3rem; font-style: italic; line-height: 1.4; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #31527b; }.stat { padding: 30px 22px; background: var(--blue); }.stat strong { display: block; color: var(--gold); font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; }.stat span { display: block; margin-top: 10px; color: #dbeafb; font: 700 .68rem Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+    .career { background: var(--cream); color: var(--navy); width: 100%; }.career-inner { width: min(100% - 48px, 1180px); margin: auto; }.career .section-heading h2 { color: var(--navy); }.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }.filter { padding: 9px 13px; border: 1px solid #c8d4e0; color: var(--navy); background: transparent; font: 700 .68rem Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }.filter.active, .filter:hover { color: #fff; background: var(--blue); border-color: var(--blue); }.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }.milestone { padding: 23px; border-top: 4px solid var(--sky); background: #fff; }.milestone[data-era="international"] { border-color: var(--gold); }.milestone[data-era="legacy"] { border-color: var(--blue); }.milestone h3 { margin: 0 0 8px; font-size: 1.3rem; }.milestone time { color: var(--blue); font: 700 .7rem Arial, sans-serif; letter-spacing: .12em; }.milestone p { margin-bottom: 0; color: #687a8b; font: .88rem/1.6 Arial, sans-serif; }
+    footer { padding: 35px 24px; color: var(--muted); background: #06132b; font: .72rem Arial, sans-serif; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    @media (max-width: 700px) { nav { width: calc(100% - 32px); }.hero { min-height: 670px; padding-inline: 24px; background-position: 64% center; }.hero-copy { padding-bottom: 10px; }.story { grid-template-columns: 1fr; gap: 35px; }.story-image { min-height: 330px; }.stats { grid-template-columns: repeat(2, 1fr); }.timeline { grid-template-columns: 1fr; } section { padding: 70px 0; } }
+    @media (max-width: 430px) { nav a:not(.brand) { display: none; } h1 { font-size: 4.2rem; } section, .career-inner { width: calc(100% - 32px); } }
+    .hero { position: relative; overflow: hidden; }
+    .hero::after { position: absolute; inset: -30%; content: ""; background: radial-gradient(circle, rgba(101, 185, 232, .16), transparent 28%); animation: drift 14s ease-in-out infinite alternate; pointer-events: none; }
+    .hero-copy { position: relative; z-index: 1; }
+    .hero-copy > * { animation: rise-in .8s both; }
+    .hero-copy > :nth-child(2) { animation-delay: .15s; }
+    .hero-copy > :nth-child(3) { animation-delay: .3s; }
+    .hero-copy > :nth-child(4) { animation-delay: .45s; }
+    .button { transition: transform .25s, background .25s; }
+    .button:hover { transform: translateY(-4px); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .story-image { transition: transform .8s ease; }
+    .story-image:hover { transform: scale(1.025) rotate(-1deg); }
+    .stat { transition: background .3s, transform .3s; }
+    .stat:hover { z-index: 1; background: #2871cf; transform: translateY(-7px); }
+    .milestone { transition: transform .35s, box-shadow .35s; }
+    .milestone:hover { transform: translateY(-8px); box-shadow: 0 14px 26px rgba(9, 27, 59, .14); }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes drift { from { transform: translate(-8%, -4%) scale(1); } to { transform: translate(8%, 5%) scale(1.2); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav><a class="brand" href="#top">Gracias <span>Leo</span></a><a href="#legacy">The legacy ↓</a></nav>
+    <div class="hero-copy"><span class="eyebrow">A tribute to Lionel Messi</span><h1>Simply<br><em>unmatched.</em></h1><p>For the nights that felt impossible, the goals that rewrote the script, and the quiet genius that made football look like art.</p><a class="button" href="#story">Explore the journey</a></div>
+  </header>
+
+  <main>
+    <section class="story" id="story"><div class="story-image" role="img" aria-label="Football player on a pitch"></div><div class="story-copy"><span class="eyebrow">More than a number</span><div class="section-heading"><h2>The beautiful game found its <em>artist.</em></h2></div><p>From Rosario to the biggest stages in the world, Leo's story is one of imagination, resilience and an almost impossible consistency. He did not just collect trophies. He gave millions a new way to see football.</p><p>Every touch carries a memory. Every left-footed finish feels like a signature.</p><div class="quote">“You have to fight to reach your dream. You have to sacrifice and work hard for it.”</div></div></section>
+
+    <section aria-label="Career statistics"><div class="stats"><div class="stat"><strong>8</strong><span>Ballon d'Ors</span></div><div class="stat"><strong>800+</strong><span>Career goals</span></div><div class="stat"><strong>45</strong><span>Major trophies</span></div><div class="stat"><strong>1</strong><span>World Cup</span></div></div></section>
+
+    <section class="career" id="legacy"><div class="career-inner"><div class="section-heading"><span class="eyebrow">The timeline</span><h2>Chapters of a<br><em>legend.</em></h2></div><div class="filters"><button class="filter active" data-filter="all" type="button">All years</button><button class="filter" data-filter="club" type="button">Club</button><button class="filter" data-filter="international" type="button">Argentina</button><button class="filter" data-filter="legacy" type="button">Legacy</button></div><div class="timeline"><article class="milestone" data-era="club"><time>2004 / Barcelona</time><h3>The beginning</h3><p>A teenage debut becomes the opening line of an extraordinary chapter in Catalonia.</p></article><article class="milestone" data-era="club"><time>2012 / Barcelona</time><h3>A record year</h3><p>91 goals in a calendar year. A number that still feels like a typo.</p></article><article class="milestone" data-era="international"><time>2021 / Argentina</time><h3>La Albiceleste</h3><p>Copa América glory ends a long wait and begins a golden international era.</p></article><article class="milestone" data-era="international"><time>2022 / Qatar</time><h3>The missing star</h3><p>Seven matches, seven goal contributions, and the World Cup lifted at last.</p></article><article class="milestone" data-era="legacy"><time>2023 / Beyond</time><h3>A new horizon</h3><p>A new league, a new generation watching, and the same joy in every touch.</p></article><article class="milestone" data-era="legacy"><time>Always / Football</time><h3>Gracias, Leo</h3><p>The records will be challenged. The feeling you gave the game will not be.</p></article></div></div></section>
+  </main>
+  <footer>Gracias Leo · A fan-made tribute to an unmatched career</footer>
+  <script>
+    const filters = document.querySelectorAll('.filter');
+    const milestones = document.querySelectorAll('.milestone');
+    const revealItems = document.querySelectorAll('main > section');
+    revealItems.forEach((item) => item.classList.add('reveal'));
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    filters.forEach((filter) => filter.addEventListener('click', () => { filters.forEach((item) => item.classList.remove('active')); filter.classList.add('active'); milestones.forEach((milestone) => { milestone.hidden = filter.dataset.filter !== 'all' && milestone.dataset.era !== filter.dataset.filter; }); }));
+  </script>
+</body>
+</html>
